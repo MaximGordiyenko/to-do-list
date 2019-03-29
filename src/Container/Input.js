@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import List from "../Components/List";
+import Button from "../Components/Button";
 
 class Input extends Component {
     state = {
@@ -8,14 +9,12 @@ class Input extends Component {
     };
 
     handleChange = (event) => {
-        console.log(event.target.value);
         this.setState({
             value: event.target.value
         });
     };
 
     handleSubmit = (e) => {
-        // console.log(e.state.value);
         e.preventDefault();
         this.setState({
             value: '',
@@ -31,7 +30,9 @@ class Input extends Component {
                            value={this.state.value}
                            onChange={this.handleChange}/>
                 </form>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <Button action={this.handleSubmit}
+                        title={"Submit"}
+                />{" "}
                 <List items={this.state.items}/>
             </div>
         );

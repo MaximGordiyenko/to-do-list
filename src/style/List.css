@@ -1,0 +1,11 @@
+.list{
+    height: 500px;
+}
+
+.item{
+    list-style-type: none;
+    border: 1px solid #000;
+    line-height: 45px;
+    width: 400px;
+    height: 50px;
+}

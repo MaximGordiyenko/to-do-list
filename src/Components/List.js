@@ -1,10 +1,11 @@
 import React from 'react';
+import '../style/List.css'
 
 const List = ({items}) => (
-    <ul>
-        <h1>Hello</h1>
+    <ul className='list'>
         {items.map((item, id) =>
-            <li key={id}>
+            <li className='item'
+                key={id}>
                 {item}
             </li>
         )}
