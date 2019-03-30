@@ -1,16 +1,14 @@
 import React from 'react';
 
-const Input = ({type, value, placeholder, action}) => {
+const Checkbox = ({type, name, action}) => {
     return (
         <div className="">
             <input type={type}
-                   value={value}
-                   placeholder={placeholder}
+                   name={name}
                    onChange={action}
             />
-
         </div>
     );
 };
 
-export default Input;
+export default Checkbox;

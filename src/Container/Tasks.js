@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import List from "../Components/List";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
+import Checkbox from "../Components/Checkbox";
 
 class Tasks extends Component {
     state = {
@@ -23,6 +24,10 @@ class Tasks extends Component {
         });
     };
 
+    handleCheckbox = () => {
+
+    };
+
     render() {
         return (
             <>
@@ -32,11 +37,17 @@ class Tasks extends Component {
                            value={this.state.value}
                            action={this.handleChange}
                     />
+
                 </form>
                 <Button action={this.handleSubmit}
                         title={"Submit"}
                 />{" "}
-                <List items={this.state.items}/>
+                <List items={this.state.items}>
+                    <Checkbox name={'checkbox'}
+                              type={"checkbox"}
+                              action={this.handleCheckbox}
+                    />
+                </List>
             </>
         );
     }
