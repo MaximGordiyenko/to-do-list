@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import List from "../Components/List";
 import Button from "../Components/Button";
+import Input from "../Components/Input";
 
-class Input extends Component {
+class Tasks extends Component {
     state = {
         value: '',
         items: [],
@@ -24,19 +25,21 @@ class Input extends Component {
 
     render() {
         return (
-            <div>
+            <>
                 <form>
-                    <input type="text"
+                    <Input type={'text'}
+                           placeholder={'add item'}
                            value={this.state.value}
-                           onChange={this.handleChange}/>
+                           action={this.handleChange}
+                    />
                 </form>
                 <Button action={this.handleSubmit}
                         title={"Submit"}
                 />{" "}
                 <List items={this.state.items}/>
-            </div>
+            </>
         );
     }
 }
 
-export default Input;
+export default Tasks;
