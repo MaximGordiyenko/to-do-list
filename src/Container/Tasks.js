@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import List from "../Components/List";
 import Button from "../Components/Button";
+import Input from "../Components/Input";
+import Checkbox from "../Components/Checkbox";
 
-class Input extends Component {
+class Tasks extends Component {
     state = {
         value: '',
         items: [],
@@ -22,21 +24,33 @@ class Input extends Component {
         });
     };
 
+    handleCheckbox = () => {
+
+    };
+
     render() {
         return (
-            <div>
+            <>
                 <form>
-                    <input type="text"
+                    <Input type={'text'}
+                           placeholder={'add item'}
                            value={this.state.value}
-                           onChange={this.handleChange}/>
+                           action={this.handleChange}
+                    />
+
                 </form>
                 <Button action={this.handleSubmit}
                         title={"Submit"}
                 />{" "}
-                <List items={this.state.items}/>
-            </div>
+                <List items={this.state.items}>
+                    <Checkbox name={'checkbox'}
+                              type={"checkbox"}
+                              action={this.handleCheckbox}
+                    />
+                </List>
+            </>
         );
     }
 }
 
-export default Input;
+export default Tasks;
