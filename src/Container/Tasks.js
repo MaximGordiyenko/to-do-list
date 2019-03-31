@@ -3,6 +3,7 @@ import List from "../Components/List";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import Checkbox from "../Components/Checkbox";
+import '../style/Tasks.css'
 
 class Tasks extends Component {
     state = {
@@ -30,25 +31,29 @@ class Tasks extends Component {
 
     render() {
         return (
-            <>
-                <form>
-                    <Input type={'text'}
-                           placeholder={'add item'}
-                           value={this.state.value}
-                           action={this.handleChange}
-                    />
+            <div>
+                <div className='tasks-container'>
+                    <div className='form-tasks-wrapper'>
+                        <form className='form'>
+                            <Input type={'text'}
+                                   placeholder={'Text input with button'}
+                                   value={this.state.value}
+                                   action={this.handleChange}
+                            />
+                        </form>
+                        <Button action={this.handleSubmit}
+                                title={"Add"}
+                        />{" "}
+                    </div>
 
-                </form>
-                <Button action={this.handleSubmit}
-                        title={"Submit"}
-                />{" "}
-                <List items={this.state.items}>
-                    <Checkbox name={'checkbox'}
-                              type={"checkbox"}
-                              action={this.handleCheckbox}
-                    />
-                </List>
-            </>
+                    <List items={this.state.items}>
+                        <Checkbox name={'checkbox'}
+                                  type={"checkbox"}
+                                  action={this.handleCheckbox}
+                        />
+                    </List>
+                </div>
+            </div>
         );
     }
 }

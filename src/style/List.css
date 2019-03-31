@@ -1,11 +1,16 @@
-.list{
-    height: 500px;
+.list {
+    height: 511px;
+    overflow: scroll;
 }
 
-.item{
+.item {
     list-style-type: none;
     border: 1px solid #000;
+    border-bottom: none;
     line-height: 45px;
-    width: 400px;
+    width: 60vw;
     height: 50px;
+}
+.item:last-child{
+    border: 1px solid #000;
 }

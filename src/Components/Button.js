@@ -5,8 +5,7 @@ export const Button = ({action, title}) => {
     return (
         <button
             className='button'
-            onClick={action}
-        >{title}
+            onClick={action}>{title}
         </button>
     )
 };
