@@ -1,11 +1,18 @@
-.list{
-    height: 500px;
+.list {
+    height: 511px;
+    width: 60vw;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.item{
+.item {
     list-style-type: none;
     border: 1px solid #000;
-    line-height: 45px;
-    width: 400px;
+    border-bottom: none;
+    line-height: 55px;
     height: 50px;
+}
+
+.item:last-child {
+    border: 1px solid #000;
 }

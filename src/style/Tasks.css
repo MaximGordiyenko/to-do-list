@@ -1,0 +1,15 @@
+.tasks-container {
+    display: block;
+    width: 70vw;
+    margin-left: 20px;
+}
+
+.form-tasks-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 50px 0 0;
+}
+
+.form {
+
+}
