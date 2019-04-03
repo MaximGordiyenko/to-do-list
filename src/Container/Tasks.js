@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import List from "../Components/List";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
-import Checkbox from "../Components/Checkbox";
 import '../style/Tasks.css'
 
 class Tasks extends Component {
@@ -19,10 +18,15 @@ class Tasks extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            value: '',
-            items: [...this.state.items, this.state.value],
-        });
+
+        if (this.state.value) {
+            this.setState({
+                value: '',
+                items: [...this.state.items, this.state.value],
+            });
+        } else {
+            alert('Add task please!');
+        }
     };
 
     handleCheckbox = () => {
@@ -46,12 +50,8 @@ class Tasks extends Component {
                         />{" "}
                     </div>
 
-                    <List items={this.state.items}>
-                        <Checkbox name={'checkbox'}
-                                  type={"checkbox"}
-                                  action={this.handleCheckbox}
-                        />
-                    </List>
+                    <List items={this.state.items}
+                          action={this.handleCheckbox}/>
                 </div>
             </div>
         );
