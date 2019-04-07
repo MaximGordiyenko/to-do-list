@@ -2,8 +2,12 @@ import React, {Component} from 'react';
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import '../style/Categories.css';
+import ListCategory from "../Components/ListCategory";
 
 class Categories extends Component {
+    state = {
+        items: []
+    };
 
     handleAddCategories = () => {
 
@@ -23,7 +27,11 @@ class Categories extends Component {
                         </form>
                         <Button action={this.handleAddCategories}
                                 title={"Add"}
-                        /></div>
+                        />
+                    </div>
+                    <ListCategory items={this.state.items}
+
+                    />
                 </div>
             </div>
         );

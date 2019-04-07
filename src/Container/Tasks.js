@@ -18,7 +18,6 @@ class Tasks extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
         if (this.state.value) {
             this.setState({
                 value: '',
