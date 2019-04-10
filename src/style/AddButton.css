@@ -1,0 +1,10 @@
+.btn-add:before {
+    content: "\002B";
+
+}
+
+.btn-category{
+    display: inline-flex;
+    float: right;
+    margin: 16px;
+}

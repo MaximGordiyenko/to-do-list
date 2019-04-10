@@ -1,9 +1,4 @@
-.buttonPlus:before {
-    content: "\002B";
-
-}
-
-.buttonCat{
+.btn-del-category{
     display: inline-flex;
     float: right;
     margin: 16px;

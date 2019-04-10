@@ -1,5 +1,6 @@
 import React from 'react';
-import ButtonSubCategories from "./ButtonSubCategories";
+import AddButton from "./addButton";
+import DeleteButton from "./DeleteButton";
 
 const ItemCategory = ({items, action}) => {
     return (
@@ -7,8 +8,9 @@ const ItemCategory = ({items, action}) => {
             {items.map((item, id) =>
                 <li className='item'
                     key={id}>{item}
-                    <ButtonSubCategories action={action}
-                    />
+                    <AddButton action={action}/>
+                    <DeleteButton action={action}
+                    title={'x'}/>
                 </li>
             )}
         </ul>
