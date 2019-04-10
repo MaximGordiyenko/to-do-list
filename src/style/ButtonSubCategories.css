@@ -1,0 +1,10 @@
+.buttonPlus:before {
+    content: "\002B";
+
+}
+
+.buttonCat{
+    display: inline-flex;
+    float: right;
+    margin: 16px;
+}
