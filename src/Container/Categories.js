@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import '../style/Categories.css';
-import ListCategory from "../Components/ListCategory";
+import ItemCategory from "../Components/ItemCategory";
 
 class Categories extends Component {
     state = {
@@ -46,7 +46,8 @@ class Categories extends Component {
                                 title={"Add"}
                         />
                     </div>
-                    <ListCategory items={this.state.items}
+                    <ItemCategory items={this.state.items}
+                                  // action={this.handleSubListCategory}
                     />
                 </div>
             </>

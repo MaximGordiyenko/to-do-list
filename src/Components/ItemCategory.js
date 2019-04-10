@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonSubCategories from "./ButtonSubCategories";
 
-const ListCategory = ({items, action}) => {
+const ItemCategory = ({items, action}) => {
     return (
         <ul className='list'>
             {items.map((item, id) =>
@@ -15,4 +15,4 @@ const ListCategory = ({items, action}) => {
     );
 };
 
-export default ListCategory;
+export default ItemCategory;
