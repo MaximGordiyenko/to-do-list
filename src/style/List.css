@@ -1,6 +1,5 @@
 .list {
-    height: 511px;
-    width: 60vw;
+    width: 80%;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -11,6 +10,7 @@
     border-bottom: none;
     line-height: 55px;
     height: 50px;
+    padding-left: 20px;
 }
 
 .item:last-child {

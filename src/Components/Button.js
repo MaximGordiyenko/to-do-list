@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/Button.css'
 
-export const Button = ({action, title}) => {
+const Button = ({action, title}) => {
     return (
         <button
             className='button'

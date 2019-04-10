@@ -34,7 +34,7 @@ class Tasks extends Component {
 
     render() {
         return (
-            <div>
+            <>
                 <div className='tasks-container'>
                     <div className='form-tasks-wrapper'>
                         <form className='form'>
@@ -50,9 +50,10 @@ class Tasks extends Component {
                     </div>
 
                     <List items={this.state.items}
-                          action={this.handleCheckbox}/>
+                          action={this.handleCheckbox}
+                    />
                 </div>
-            </div>
+            </>
         );
     }
 }
