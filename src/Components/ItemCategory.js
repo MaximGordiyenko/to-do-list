@@ -1,6 +1,6 @@
 import React from 'react';
-import AddButton from "./addButton";
-import DeleteButton from "./DeleteButton";
+import Button from "./Button";
+import '../style/ItemCategory.css';
 
 const ItemCategory = ({items, action}) => {
     return (
@@ -8,9 +8,14 @@ const ItemCategory = ({items, action}) => {
             {items.map((item, id) =>
                 <li className='item'
                     key={id}>{item}
-                    <AddButton action={action}/>
-                    <DeleteButton action={action}
-                    title={'x'}/>
+                    <div className='btns'>
+                        <Button action={action}
+                                title={'\u270E'}/>
+                        <Button action={action}
+                                title={'x'}/>
+                        <Button action={action}
+                                title={'+'}/>
+                    </div>
                 </li>
             )}
         </ul>
