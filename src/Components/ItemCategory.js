@@ -1,5 +1,6 @@
 import React from 'react';
-import ButtonSubCategories from "./ButtonSubCategories";
+import Button from "./Button";
+import '../style/ItemCategory.css';
 
 const ItemCategory = ({items, action}) => {
     return (
@@ -7,8 +8,14 @@ const ItemCategory = ({items, action}) => {
             {items.map((item, id) =>
                 <li className='item'
                     key={id}>{item}
-                    <ButtonSubCategories action={action}
-                    />
+                    <div className='btns'>
+                        <Button action={action}
+                                title={'\u270E'}/>
+                        <Button action={action}
+                                title={'x'}/>
+                        <Button action={action}
+                                title={'+'}/>
+                    </div>
                 </li>
             )}
         </ul>
