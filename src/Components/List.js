@@ -8,7 +8,6 @@ const List = ({action, checks}) => (
             <li className='item'
                 key={id}>
                 <Checkbox type={"checkbox"}
-                          name={item.name}
                           checked={item.isChecked}
                           value={item.value}
                           action={action}

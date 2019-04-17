@@ -1,13 +1,13 @@
 import React from 'react';
 import '../style/Checkbox.css';
 
-const Checkbox = ({isChecked, value, type, action}) => {
+const Checkbox = ({checked, value, type, action}) => {
     return (
         <div className="checkbox">
             <input type={type}
-                   checked={isChecked}
+                   checked={checked}
                    value={value}
-                   onClick={action}/>{value}
+                   onChange={action}/>{value}
         </div>
     );
 };

@@ -3,7 +3,6 @@ import './style/App.css';
 import Tasks from "./Container/Tasks";
 import Categories from "./Container/Categories";
 import FilterForm from "./Container/FilterForm";
-// import ProgressBar from "./Container/ProgressBar";
 
 class App extends Component {
     render() {
@@ -13,8 +12,6 @@ class App extends Component {
                     <h1>To Do List</h1>
                     <FilterForm/>
                 </div>
-
-                {/*<ProgressBar/>*/}
 
                 <div className='component-container'>
                     <Categories/>
