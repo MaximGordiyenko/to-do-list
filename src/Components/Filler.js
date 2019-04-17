@@ -1,14 +1,13 @@
 import React from 'react';
 import '../style/Filler.css';
-// import style from '../style/Filler.css'
 
-const Filler = ({percentage,}) => {
-    return (
-        <div className='filler'>
-            style={{width: `${percentage}%`}}
-            />
-        </div>
-    );
+const Filler = ({current, total}) => {
+    let realPercent = current / total * 100;
+    return <div className="filler progress-bar"
+                style={{width: `${realPercent}%`}}
+    />
 };
 
+
 export default Filler;
+

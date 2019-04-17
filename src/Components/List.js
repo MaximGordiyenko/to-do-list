@@ -2,13 +2,15 @@ import React from 'react';
 import '../style/List.css'
 import Checkbox from "./Checkbox";
 
-const List = ({items, action}) => (
+const List = ({action, checks}) => (
     <ul className='list'>
-        {items.map((item, id) =>
+        {checks.map((item, id) =>
             <li className='item'
-                key={id}>{item}
-                <Checkbox name={'checkbox'}
-                          type={"checkbox"}
+                key={id}>
+                <Checkbox type={"checkbox"}
+                          name={item.name}
+                          checked={item.isChecked}
+                          value={item.value}
                           action={action}
                 />
             </li>
