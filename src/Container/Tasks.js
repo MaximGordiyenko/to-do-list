@@ -26,9 +26,6 @@ class Tasks extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.value) {
-            console.log(this.state.value);
-            console.log(this.state.checks.length);
-            console.log(this.state.checks);
             this.setState({
                 value: '',
                 checks: [...this.state.checks, this.state.value],
@@ -39,19 +36,16 @@ class Tasks extends Component {
     };
 
     handleInputChange = (e) => {
-        let checks = this.state.checks;
-        checks.forEach(i => {
-            console.log(e.target.value, e.target.isChecked);
-            if (i.value === e.target.value) {
-                return i.value = !i.value;
-            }
+        let checks =  this.state.checks.map(i => {
+            if (i.value === e.target.value) i.isChecked = !i.isChecked
+            return i
         });
-        this.setState({checks: checks})
+        this.setState({checks})
     };
 
     render() {
         return (
-            <>
+            <React.Fragment>
                 <div className='tasks-container'>
                     <div className='form-tasks-wrapper'>
                         <form className='form'>
@@ -69,12 +63,12 @@ class Tasks extends Component {
                     <List checks={this.state.checks}
                           action={this.handleInputChange}
                     />
-                    <Filler percentage={35}
+                    <Filler
                             current={(this.state.checks).filter(i => i.value === true).length}
                             total={this.state.checks.length}
                     />
                 </div>
-            </>
+            </React.Fragment>
         );
     }
 }
