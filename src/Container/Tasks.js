@@ -3,16 +3,23 @@ import List from "../Components/List";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import '../style/Tasks.css'
+import Filler from "../Components/Filler";
 
 class Tasks extends Component {
     state = {
         value: '',
-        items: [],
+        percentage: 100,
+        checks: [
+            {value: "banana", isChecked: false},
+            {value: "apple", isChecked: false},
+            {value: "mango", isChecked: false},
+            {value: "grap", isChecked: false}
+        ]
     };
 
-    handleChange = (event) => {
+    handleChange = (e) => {
         this.setState({
-            value: event.target.value
+            value: e.target.value,
         });
     };
 
@@ -21,21 +28,36 @@ class Tasks extends Component {
         if (this.state.value) {
             this.setState({
                 value: '',
-                items: [...this.state.items, this.state.value],
+                checks: [...this.state.checks, {
+                    value: this.state.value, isChecked: false,
+                }
+                ],
             });
         } else {
             alert('Add task please!');
         }
     };
 
-    handleCheckbox = () => {
-
+    handleCheckbox = (e) => {
+        let checks = this.state.checks.map(i => {
+            if (i.value === e.target.value) i.isChecked = !i.isChecked;
+            return i;
+        });
+        this.setState({
+            checks,
+        });
     };
 
     render() {
         return (
             <>
                 <div className='tasks-container'>
+
+                    <Filler
+                      current={(this.state.checks).filter(i => i.isChecked === true).length}
+                      total={this.state.checks.length}
+                    />{this.state.checks.length}
+
                     <div className='form-tasks-wrapper'>
                         <form className='form'>
                             <Input type={'text'}
@@ -49,7 +71,7 @@ class Tasks extends Component {
                         />{" "}
                     </div>
 
-                    <List items={this.state.items}
+                    <List checks={this.state.checks}
                           action={this.handleCheckbox}
                     />
                 </div>

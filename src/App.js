@@ -12,6 +12,7 @@ class App extends Component {
                     <h1>To Do List</h1>
                     <FilterForm/>
                 </div>
+
                 <div className='component-container'>
                     <Categories/>
                     <Tasks/>
