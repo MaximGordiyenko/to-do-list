@@ -29,7 +29,7 @@ class Tasks extends Component {
             this.setState({
                 value: '',
                 checks: [...this.state.checks, {
-                    value: this.state.value, isChecked: this.state.isChecked,
+                    value: this.state.value, isChecked: false,
                 }
                 ],
             });
@@ -53,9 +53,9 @@ class Tasks extends Component {
             <>
                 <div className='tasks-container'>
 
-                    <Filler percentage={this.state.percentage}
-                            current={(this.state.checks).filter(i => i.isChecked === true).length}
-                            total={this.state.checks.length}
+                    <Filler
+                      current={(this.state.checks).filter(i => i.isChecked === true).length}
+                      total={this.state.checks.length}
                     />{this.state.checks.length}
 
                     <div className='form-tasks-wrapper'>
