@@ -1,12 +1,12 @@
 import React from 'react';
-import '../style/Filler.css';
+import '../style/Progressbar.css';
 
-const Filler = ({current, total}) =>
+const Progressbar = ({current, total}) =>
     <div className='progress-bar'>
         <div className="filler"
              style={{width:`${current / total * 100}%`}}>
         </div>
     </div>;
 
-export default Filler;
+export default Progressbar;
 

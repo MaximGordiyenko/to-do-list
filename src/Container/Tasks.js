@@ -2,18 +2,17 @@ import React, {Component} from 'react';
 import List from "../Components/List";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
+import Progressbar from "../Components/Progressbar";
 import '../style/Tasks.css'
-import Filler from "../Components/Filler";
 
 class Tasks extends Component {
     state = {
         value: '',
-        percentage: 100,
         checks: [
             {value: "banana", isChecked: false},
             {value: "apple", isChecked: false},
             {value: "mango", isChecked: false},
-            {value: "grap", isChecked: false}
+            {value: "grape", isChecked: false}
         ]
     };
 
@@ -25,7 +24,8 @@ class Tasks extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        if (this.state.value) {
+        const isExistTask = this.state.checks.map(i => i.value).includes(this.state.value);
+        if (!isExistTask) {
             this.setState({
                 value: '',
                 checks: [...this.state.checks, {
@@ -34,7 +34,7 @@ class Tasks extends Component {
                 ],
             });
         } else {
-            alert('Add task please!');
+            alert('Add task please or check existed task!');
         }
     };
 
@@ -49,20 +49,21 @@ class Tasks extends Component {
     };
 
     render() {
+        const {checks, value} = this.state;
         return (
             <>
                 <div className='tasks-container'>
 
-                    <Filler
-                      current={(this.state.checks).filter(i => i.isChecked === true).length}
-                      total={this.state.checks.length}
-                    />{this.state.checks.length}
+                    <Progressbar
+                        current={(checks).filter(i => i.isChecked === true).length}
+                        total={checks.length}
+                    />
 
                     <div className='form-tasks-wrapper'>
                         <form className='form'>
                             <Input type={'text'}
                                    placeholder={'Text input with button'}
-                                   value={this.state.value}
+                                   value={value}
                                    action={this.handleChange}
                             />
                         </form>
@@ -71,7 +72,7 @@ class Tasks extends Component {
                         />{" "}
                     </div>
 
-                    <List checks={this.state.checks}
+                    <List checks={checks}
                           action={this.handleCheckbox}
                     />
                 </div>

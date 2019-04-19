@@ -31,6 +31,7 @@ class Categories extends Component {
     };
 
     render() {
+        const {items, value} = this.state;
         return (
             <>
                 <div className='category-container'>
@@ -38,7 +39,7 @@ class Categories extends Component {
                         <form>
                             <Input type={'text'}
                                    placeholder={'Enter category title'}
-                                   value={this.state.value}
+                                   value={value}
                                    action={this.handleChange}
                             />
                         </form>
@@ -46,7 +47,7 @@ class Categories extends Component {
                                 title={"Add"}
                         />
                     </div>
-                    <ItemCategory items={this.state.items}
+                    <ItemCategory items={items}
                                   // action={this.handleSubListCategory}
                     />
                 </div>

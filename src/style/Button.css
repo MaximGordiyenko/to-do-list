@@ -4,3 +4,7 @@
     font-family: 'Indie Flower', cursive;
 
 }
+
+.button:nth-child(1){
+    border-left: 1px solid #dfe9e9;;
+}

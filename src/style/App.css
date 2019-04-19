@@ -2,9 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom: 15px;
 }
 
 .app{
+    margin: 15px;
     font-family: 'Indie Flower', cursive;
 }
 
