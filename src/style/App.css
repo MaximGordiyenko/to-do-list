@@ -5,12 +5,12 @@
     margin-bottom: 15px;
 }
 
-.app{
+.app {
     margin: 15px;
     font-family: 'Indie Flower', cursive;
 }
 
-.component-container{
+.component-container {
     display: flex;
     overflow: hidden;
 }
