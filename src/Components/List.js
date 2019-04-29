@@ -1,6 +1,7 @@
 import React from 'react';
 import '../style/List.css'
 import Checkbox from "./Checkbox";
+import Button from "./Button";
 
 const List = ({action, checks}) => (
     <ul className='list'>
@@ -12,6 +13,9 @@ const List = ({action, checks}) => (
                           value={item.value}
                           action={action}
                 />
+                <Button action={action}
+                        title={'\u270E'}
+                        className='plus'/>
             </li>
         )}
     </ul>

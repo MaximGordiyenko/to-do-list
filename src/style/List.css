@@ -1,8 +1,9 @@
 .list {
-    width: 80%;
+    width: 90%;
     height: 511px;
     overflow-y: auto;
     overflow-x: hidden;
+    padding: 0;
 }
 
 .item {

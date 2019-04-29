@@ -6,7 +6,7 @@ const Input = ({type, value, placeholder, action}) => {
         <div className="">
             <input type={type}
                    value={value}
-                   className='tasks-input'
+                   className='input'
                    placeholder={placeholder}
                    onChange={action}
             />
