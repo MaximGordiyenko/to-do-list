@@ -4,7 +4,7 @@ import Progressbar from "../Components/Progressbar";
 import List from "../Components/List";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
-import createTask from '../Actions/addAction';
+import {createTask, deleteTask} from '../Actions/taskAction';
 import '../style/Tasks.css'
 
 class Tasks extends Component {
@@ -20,10 +20,11 @@ class Tasks extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {task} = this.props;
+    const {task, createTask} = this.props;
     const isExistTask = task.map(i => i.value).includes(this.state.value);
-    if (!isExistTask) {
-      this.props.anAddTask(this.state);
+    const isEmpty = this.state.value !== '';
+    if (!isExistTask && isEmpty) {
+      createTask(this.state);
       this.setState({
         value: '',
       });
@@ -35,12 +36,17 @@ class Tasks extends Component {
   handleCheckbox = (e) => {
     const {task} = this.props;
     let tasks = task.map(i => {
-      if (i.value === e.target.value) i.isChecked = !i.isChecked;
+      if (i.value === e.target.value) i.completed = !i.completed;
       return i;
     });
     this.setState({
       tasks,
     });
+  };
+
+  handleDelete = () => {
+    const {task, deleteTask} = this.props;
+    deleteTask(task.id);
   };
 
   render() {
@@ -51,7 +57,7 @@ class Tasks extends Component {
           <div className='tasks-container'>
 
             <Progressbar
-                current={(task).filter(i => i.isChecked === true).length}
+                current={(task).filter(i => i.completed === true).length}
                 total={task.length}
             />
 
@@ -60,6 +66,7 @@ class Tasks extends Component {
                 <Input type={'text'}
                        placeholder={'Text input with button'}
                        value={value}
+                       required={true}
                        action={this.handleChange}
                 />
               </form>
@@ -68,8 +75,9 @@ class Tasks extends Component {
               />{" "}
             </div>
 
-            <List checks={task}
-                  action={this.handleCheckbox}
+            <List task={task}
+                  checkbox={this.handleCheckbox}
+                  deleteTask={this.handleDelete}
             />
           </div>
         </>
@@ -80,8 +88,10 @@ class Tasks extends Component {
 const mapStateToProps = state => ({
   task: state.task,
 });
+
 const mapDispatchToProps = {
-  anAddTask: createTask,
+  createTask,
+  deleteTask,
 };
 
 export default connect(

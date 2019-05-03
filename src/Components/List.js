@@ -3,19 +3,23 @@ import '../style/List.css'
 import Checkbox from "./Checkbox";
 import Button from "./Button";
 
-const List = ({checks, action}) => (
+const List = ({task, checkbox, deleteTask}) => (
     <ul className='list'>
-      {checks.map((item, id) =>
-          <li className='item'
-              key={id}>
+      {task.map((item, id) =>
+          <li className='item' key={id}>
             <Checkbox type={"checkbox"}
-                      checked={item.isChecked}
+                      checked={item.completed}
                       value={item.value}
-                      action={action}
+                      action={checkbox}
             />
-            <Button action={action}
+            <Button
                     title={'\u270E'}
-                    className='plus'/>
+                    className='plus'
+            />
+            <Button action={deleteTask}
+                    title={'\u232B'}
+                    className='plus'
+            />
           </li>
       )}
     </ul>
