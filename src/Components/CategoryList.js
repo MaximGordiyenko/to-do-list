@@ -2,15 +2,15 @@ import React from 'react';
 import Button from "./Button";
 import '../style/ItemCategory.css';
 
-const ItemCategory = ({items, action}) => (
+const CategoryList = ({category, action, deleteCategory}) => (
     <ul className='list'>
-      {items.map((item, id) =>
+      {category.map((item) =>
           <li className='item'
-              key={id}>{item.value}
+              key={item.id}>{item.value}
             <div className='btns'>
               <Button action={action}
                       title={'\u270E'}/>
-              <Button action={action}
+              <Button action={() => deleteCategory(item.id)}
                       title={'x'}/>
               <Button action={action}
                       title={'+'}/>
@@ -20,4 +20,4 @@ const ItemCategory = ({items, action}) => (
     </ul>
 );
 
-export default ItemCategory;
+export default CategoryList;

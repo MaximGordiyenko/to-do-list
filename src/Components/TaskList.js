@@ -3,20 +3,19 @@ import '../style/List.css'
 import Checkbox from "./Checkbox";
 import Button from "./Button";
 
-const List = ({task, checkbox, deleteTask}) => (
+const TaskList = ({task, checkbox, deleteTask}) => (
     <ul className='list'>
-      {task.map((item, id) =>
-          <li className='item' key={id}>
+      {task.map((item) =>
+          <li className='item' key={item.id}>
             <Checkbox type={"checkbox"}
                       checked={item.completed}
                       value={item.value}
                       action={checkbox}
             />
-            <Button
-                    title={'\u270E'}
+            <Button title={'\u270E'}
                     className='plus'
             />
-            <Button action={deleteTask}
+            <Button action={() => deleteTask(item.id)}
                     title={'\u232B'}
                     className='plus'
             />
@@ -25,4 +24,4 @@ const List = ({task, checkbox, deleteTask}) => (
     </ul>
 );
 
-export default List;
+export default TaskList;

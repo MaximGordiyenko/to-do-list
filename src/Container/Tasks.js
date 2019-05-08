@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Progressbar from "../Components/Progressbar";
-import List from "../Components/List";
+import TaskList from "../Components/TaskList";
 import Button from "../Components/Button";
 import Input from "../Components/Input";
 import {createTask, deleteTask} from '../Actions/taskAction';
@@ -43,10 +43,10 @@ class Tasks extends Component {
       tasks,
     });
   };
-
-  handleDelete = () => {
-    const {task, deleteTask} = this.props;
-    deleteTask(task.id);
+//https://stackoverflow.com/questions/55357974/payload-undefined-when-try-to-delete-selected-id
+  handleDelete = (id) => {
+    const {deleteTask} = this.props;
+    deleteTask(id);
   };
 
   render() {
@@ -75,9 +75,9 @@ class Tasks extends Component {
               />{" "}
             </div>
 
-            <List task={task}
-                  checkbox={this.handleCheckbox}
-                  deleteTask={this.handleDelete}
+            <TaskList task={task}
+                      checkbox={this.handleCheckbox}
+                      deleteTask={this.handleDelete}
             />
           </div>
         </>
@@ -96,4 +96,5 @@ const mapDispatchToProps = {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps)(Tasks);
+    mapDispatchToProps
+)(Tasks);

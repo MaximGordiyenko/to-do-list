@@ -1,59 +1,32 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import '../style/Categories.css';
 import Input from "../Components/Input";
 import Button from "../Components/Button";
-import '../style/Categories.css';
-import ItemCategory from "../Components/ItemCategory";
-import SubItem from "../Components/SubItem";
+import CategoryList from "../Components/CategoryList";
+// import SubItem from "../Components/SubItem";
+import {createCategory, deleteCategory} from '../Actions/categoryAction'
 
 class Categories extends Component {
   state = {
     value: "",
-    items: [
-      {
-        value: "Category 1",
-        isOpen: false,
-        submenu: [
-          {value: "Sub 1",},
-          {value: "Sub 2",},
-        ],
-      },
-      {
-        value: "Category 2",
-        isOpen: false,
-        subItem: 2,
-        submenu: [
-          {value: "Sub 1",},
-          {value: "Sub 2",},
-        ],
-      },
-      {
-        value: "Category 3",
-        isOpen: false,
-        subItem: 3,
-        submenu: [
-          {value: "Sub 1",},
-          {value: "Sub 2",},
-        ],
-      },
-    ]
   };
 
   handleChange = (e) => {
     this.setState({
       value: e.target.value,
     });
-    console.log(e.target.value);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.value) {
+    const {category, createCategory} = this.props;
+    const isExistTask = category.map(i => i.value).includes(this.state.value);
+    const isEmpty = this.state.value !== '';
+    if (!isExistTask && isEmpty) {
+      createCategory(this.state);
       this.setState({
         value: '',
-        items: [...this.state.items, {
-          value: this.state.value, isOpen: false,
-        }
-        ],
       });
     } else {
       alert('Add task please!');
@@ -68,8 +41,14 @@ class Categories extends Component {
     this.setState({})
   };
 
+  handleDelete = id => {
+    const {deleteCategory} = this.props;
+    deleteCategory(id);
+  };
+
   render() {
-    const {items, value} = this.state;
+    const {value} = this.state;
+    const {category} = this.props;
     return (
         <>
           <div className='category-container'>
@@ -85,15 +64,28 @@ class Categories extends Component {
                       title={"Add"}
               />
             </div>
-            <ItemCategory items={items}
+            <CategoryList category={category}
                           action={this.handleAddSub}
+                          deleteCategory={this.handleDelete}
             />
-            <SubItem items={items}
-            />
+            {/*<SubItem items={category}
+            />*/}
           </div>
         </>
     );
   }
 }
 
-export default Categories;
+const mapStateToProps = state => ({
+  category: state.category
+});
+
+const mapDispatchToProps = {
+  createCategory,
+  deleteCategory,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Categories);

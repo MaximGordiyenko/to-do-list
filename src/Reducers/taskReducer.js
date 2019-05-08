@@ -11,7 +11,7 @@ const taskReducer = (state = [], {type, value, id}) => {
       }];
 
     case DELETE_TASK:
-      return [...state];
+      return [...state.filter(todo => todo.id !== id)];
 
     default:
       return state;
