@@ -1,12 +1,12 @@
 import React from 'react';
+import '../style/List.css';
 import Button from "./Button";
-import '../style/ItemCategory.css';
 
-const CategoryList = ({category, action, deleteCategory, handleAddSub}) => (
+const SubList = ({sub, action, deleteCategory, handleAddSub}) => (
   <ul className='list'>
-    {category.map(item =>
+    {sub.map((item, id) =>
       <li className='item'
-          key={item.id}> {item.value}
+          key={item.id}> {item.value}{id}
         <div className='btns'>
           <Button action={action}
                   title={'\u270E'}/>
@@ -20,4 +20,6 @@ const CategoryList = ({category, action, deleteCategory, handleAddSub}) => (
   </ul>
 );
 
-export default CategoryList;
+export default SubList;
+
+

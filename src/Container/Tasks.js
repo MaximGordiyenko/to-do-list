@@ -86,7 +86,7 @@ class Tasks extends Component {
 }
 
 const mapStateToProps = state => ({
-  task: state.task,
+  task: state.taskReducer,
 });
 
 const mapDispatchToProps = {

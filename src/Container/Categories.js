@@ -4,8 +4,9 @@ import '../style/Categories.css';
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import CategoryList from "../Components/CategoryList";
-// import SubItem from "../Components/SubItem";
 import {createCategory, deleteCategory} from '../Actions/categoryAction'
+import {createSubCategory} from "../Actions/subAction";
+import SubList from "../Components/SubList";
 
 class Categories extends Component {
   state = {
@@ -33,11 +34,9 @@ class Categories extends Component {
     }
 
   };
-  handleAddSub = (e) => {
-    e.preventDefault();
-    const itemsValue = this.state.items.map(i => i.value);
-    console.log(itemsValue);
-    console.log(this.state.items);
+  handleAddSub = () => {
+    const {createSubCategory} = this.props;
+    createSubCategory(this.state);
     this.setState({})
   };
 
@@ -48,44 +47,49 @@ class Categories extends Component {
 
   render() {
     const {value} = this.state;
-    const {category} = this.props;
+    const {category, sub} = this.props;
     return (
-        <>
-          <div className='category-container'>
-            <div className='form-category-wrapper'>
-              <form>
-                <Input type={'text'}
-                       placeholder={'Enter category title'}
-                       value={value}
-                       action={this.handleChange}
-                />
-              </form>
-              <Button action={this.handleSubmit}
-                      title={"Add"}
+      <>
+        <div className='category-container'>
+          <div className='form-category-wrapper'>
+            <form>
+              <Input type={'text'}
+                     placeholder={'Enter category title'}
+                     value={value}
+                     action={this.handleChange}
               />
-            </div>
-            <CategoryList category={category}
-                          action={this.handleAddSub}
-                          deleteCategory={this.handleDelete}
+            </form>
+            <Button action={this.handleSubmit}
+                    title={"Add"}
             />
-            {/*<SubItem items={category}
-            />*/}
           </div>
-        </>
+          <CategoryList category={category}
+                        handleAddSub={this.handleAddSub}
+                        deleteCategory={this.handleDelete}>
+            <SubList sub={sub}
+                     category={category}
+                     handleAddSub={this.handleAddSub}
+                     deleteCategory={this.handleDelete}
+            />
+          </CategoryList>
+        </div>
+      </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  category: state.category
+  category: state.categoryReducer,
+  sub: state.subReducer,
 });
 
 const mapDispatchToProps = {
   createCategory,
   deleteCategory,
+  createSubCategory,
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(Categories);
