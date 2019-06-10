@@ -3,7 +3,9 @@ import '../style/List.css'
 import Checkbox from "./Checkbox";
 import Button from "./Button";
 
-const TaskList = ({task, checkbox, deleteTask}) => (
+const TaskList = ({task, checkbox, deleteTask}) =>{
+  
+  return (
     <ul className='list'>
       {task.map((item) =>
           <li className='item' key={item.id}>
@@ -22,6 +24,6 @@ const TaskList = ({task, checkbox, deleteTask}) => (
           </li>
       )}
     </ul>
-);
+)}
 
 export default TaskList;

@@ -2,5 +2,3 @@ export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
-export const ADD_SUB_CATEGORY = 'ADD_SUB_CATEGORY';
-export const DELETE_SUB_CATEGORY = 'DELETE_SUB_CATEGORY';

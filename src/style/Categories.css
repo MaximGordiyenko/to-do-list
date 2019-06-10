@@ -1,8 +1,13 @@
 .category-container {
-    width: 30vw;
+    width: 600px;
     /*height: 511px;*/
 }
 
 .form-category-wrapper {
     display: flex;
+}
+.btns {
+    position: relative;
+    top: -75px;
+    left: 165px;
 }

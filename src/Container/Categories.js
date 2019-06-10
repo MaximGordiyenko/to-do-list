@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import '../style/Categories.css';
-import Input from "../Components/Input";
-import Button from "../Components/Button";
-import CategoryList from "../Components/CategoryList";
-import {createCategory, deleteCategory} from '../Actions/categoryAction'
-import {createSubCategory} from "../Actions/subAction";
-import SubList from "../Components/SubList";
+import Input from '../Components/Input';
+import Button from '../Components/Button';
+import {createCategory, deleteCategory} from '../Actions/categoryAction';
+
 
 class Categories extends Component {
   state = {
-    value: "",
+    value: '',
   };
 
   handleChange = (e) => {
@@ -25,7 +23,7 @@ class Categories extends Component {
     const isExistTask = category.map(i => i.value).includes(this.state.value);
     const isEmpty = this.state.value !== '';
     if (!isExistTask && isEmpty) {
-      createCategory(this.state);
+      createCategory(this.state, 'root');
       this.setState({
         value: '',
       });
@@ -34,20 +32,30 @@ class Categories extends Component {
     }
 
   };
-  handleAddSub = () => {
-    const {createSubCategory} = this.props;
-    createSubCategory(this.state);
-    this.setState({})
-  };
-
-  handleDelete = id => {
-    const {deleteCategory} = this.props;
-    deleteCategory(id);
+  ITEM = (item, idx, del, cre, counter) => {
+    let total = counter;
+    return (
+      <div key={idx}>
+        <ul style={{marginLeft: total}}>
+          <li className='item'
+              key={item.id}> {item.value} id: {item.id} owner: {item.owner}
+            <div className='btns'>
+              <Button title={'EDIT [NO]'}/>
+              <Button action={() => del(item.id)}
+                      title={'REMOVE'}/>
+              <Button action={() => cre('sub_cat', item.id)}
+                      title={'ADD'}/>
+            </div>
+          </li>
+        </ul>
+        {item.sub && item.sub.map((i, idx) => this.ITEM(i, idx, del, cre, total + 5))}
+      </div>
+    );
   };
 
   render() {
     const {value} = this.state;
-    const {category, sub} = this.props;
+    const {category} = this.props;
     return (
       <>
         <div className='category-container'>
@@ -60,18 +68,13 @@ class Categories extends Component {
               />
             </form>
             <Button action={this.handleSubmit}
-                    title={"Add"}
+                    title={'Add'}
             />
           </div>
-          <CategoryList category={category}
-                        handleAddSub={this.handleAddSub}
-                        deleteCategory={this.handleDelete}>
-            <SubList sub={sub}
-                     category={category}
-                     handleAddSub={this.handleAddSub}
-                     deleteCategory={this.handleDelete}
-            />
-          </CategoryList>
+          {category.map((item, idx) => this.ITEM(
+            item, idx,
+            this.props.deleteCategory,
+            this.props.createCategory, 0))}
         </div>
       </>
     );
@@ -80,13 +83,11 @@ class Categories extends Component {
 
 const mapStateToProps = state => ({
   category: state.categoryReducer,
-  sub: state.subReducer,
 });
 
 const mapDispatchToProps = {
   createCategory,
   deleteCategory,
-  createSubCategory,
 };
 
 export default connect(
